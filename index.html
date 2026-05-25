@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PartVault - PC Parts & Components</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+  <div class="promo-bar" role="region" aria-label="Promotions">
+    <p><strong>FREE SHIPPING</strong> on orders over ₱5,000 - <a href="#shop">Shop GPUs</a></p>
+    <button type="button" class="promo-close" aria-label="Dismiss">&times;</button>
+  </div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="logo" href="#home">Part<span>Vault</span></a>
+      <div class="search-wrap">
+        <label class="visually-hidden" for="search">Search products</label>
+        <input type="search" id="search" placeholder="Search GPUs, CPUs, RAM, brands..." autocomplete="off" />
+        <button type="button" class="search-btn" aria-label="Search">&#128269;</button>
+      </div>
+      <div class="header-actions">
+        <button type="button" class="btn-theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">&#9790;</button>
+        <button type="button" class="icon-btn" id="wishlist-btn" aria-label="Wishlist (demo)">&#9825;</button>
+        <button type="button" class="icon-btn cart-trigger" id="cart-btn" aria-label="Open cart">
+          &#128722;
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+        <button type="button" class="btn-outline sm hide-mobile" id="signin-btn">Sign in</button>
+        <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="main-nav">&#9776;</button>
+      </div>
+    </div>
+    <nav class="main-nav" id="main-nav" aria-label="Main">
+      <ul class="nav-list">
+        <li><a href="#shop" data-cat="all">All</a></li>
+        <li><a href="#shop" data-cat="GPU">Graphics</a></li>
+        <li><a href="#shop" data-cat="CPU">Processors</a></li>
+        <li><a href="#shop" data-cat="Motherboard">Motherboards</a></li>
+        <li><a href="#shop" data-cat="RAM">Memory</a></li>
+        <li><a href="#shop" data-cat="Storage">Storage</a></li>
+        <li><a href="#shop" data-cat="PSU">Power</a></li>
+        <li><a href="#shop" data-cat="Case">Cases</a></li>
+        <li><a href="#shop" data-cat="Cooling">Cooling</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">New season builds</p>
+        <h1>Upgrade your rig. <br />Ships today.</h1>
+        <p class="hero-sub">Curated PC parts with clear specs, real brands, and checkout-ready browsing, built for builders.</p>
+        <div class="hero-ctas">
+          <a class="btn-primary" href="#shop">Shop all parts</a>
+          <a class="btn-ghost" href="#shop" data-cat="GPU">Browse GPUs</a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-card">
+          <span class="badge-sale">-18%</span>
+          <div class="hero-card-img">
+            <img
+              src="https://images.unsplash.com/photo-1591488320449-011701bb6704?w=640&h=640&fit=crop&auto=format&q=85"
+              alt=""
+              width="280"
+              height="280"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+          <p class="hero-card-title">RTX 5070 Ti</p>
+          <p class="hero-card-price"><del>₱49,900</del> <strong>₱40,900</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="shop-section" id="shop">
+      <div class="shop-layout">
+        <aside class="filters" id="filters-panel">
+          <h2>Refine</h2>
+          <fieldset>
+            <legend>Category</legend>
+            <div class="filter-group" id="filter-categories"></div>
+          </fieldset>
+          <fieldset>
+            <legend>Brand</legend>
+            <div class="filter-group" id="filter-brands"></div>
+          </fieldset>
+          <fieldset>
+            <legend>Price</legend>
+            <div class="price-inputs">
+              <label>Min <input type="number" id="price-min" min="0" step="500" placeholder="0" /></label>
+              <label>Max <input type="number" id="price-max" min="0" step="500" placeholder="100000" /></label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Min Rating</legend>
+            <div class="filter-group" id="filter-rating">
+              <label><input type="radio" name="frating" value="0" checked /> Any</label>
+              <label><input type="radio" name="frating" value="4" /> ★ 4+</label>
+              <label><input type="radio" name="frating" value="4.5" /> ★ 4.5+</label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Availability</legend>
+            <div class="filter-group">
+              <label><input type="checkbox" id="filter-sale" /> On Sale only</label>
+              <label><input type="checkbox" id="filter-new" /> New arrivals</label>
+            </div>
+          </fieldset>
+          <button type="button" class="btn-text" id="reset-filters">Clear all</button>
+        </aside>
+
+        <div class="catalog">
+          <div class="catalog-toolbar">
+            <p class="result-count" id="result-count">0 items</p>
+            <div class="toolbar-right">
+              <label class="sort-label">
+                Sort by
+                <select id="sort-select">
+                  <option value="featured">Featured</option>
+                  <option value="price-asc">Price: Low to High</option>
+                  <option value="price-desc">Price: High to Low</option>
+                  <option value="name">Name A-Z</option>
+                  <option value="rating">Top Rated</option>
+                </select>
+              </label>
+              <button type="button" class="btn-view-toggle" id="view-toggle" aria-label="Toggle view" title="Toggle grid/list view">&#9783;</button>
+            </div>
+          </div>
+          <div class="product-grid" id="product-grid"></div>
+          <div class="pagination" id="pagination"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div>
+        <strong>PartVault</strong>
+        <p>PC parts shopping demo. Not affiliated with Zalora.</p>
+      </div>
+      <div>
+        <strong>Help</strong>
+        <ul>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Warranty</a></li>
+        </ul>
+      </div>
+      <div>
+        <strong>Company</strong>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; 2026 PartVault &middot; Demo storefront</p>
+  </footer>
+
+  <!-- Product modal -->
+  <div class="modal-overlay" id="product-modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button type="button" class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Cart drawer -->
+  <div class="drawer-overlay" id="cart-overlay" hidden></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-hidden="true">
+    <div class="drawer-head">
+      <h2>Bag</h2>
+      <button type="button" class="icon-btn" id="cart-close" aria-label="Close cart">&times;</button>
+    </div>
+    <div class="drawer-body" id="cart-lines"></div>
+    <div class="drawer-foot">
+      <div class="subtotal-row">
+        <span>Subtotal</span>
+        <strong id="cart-subtotal">₱0.00</strong>
+      </div>
+      <button type="button" class="btn-primary full" id="checkout-btn">Checkout (demo)</button>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <!-- Wishlist drawer -->
+  <div class="drawer-overlay" id="wishlist-overlay" hidden></div>
+  <aside class="cart-drawer" id="wishlist-drawer" aria-hidden="true">
+    <div class="drawer-head">
+      <h2>Wishlist</h2>
+      <button type="button" class="icon-btn" id="wishlist-close" aria-label="Close wishlist">&times;</button>
+    </div>
+    <div class="drawer-body" id="wishlist-lines"></div>
+    <div class="drawer-foot">
+      <button type="button" class="btn-primary full" id="wishlist-add-all">Add all to bag</button>
+    </div>
+  </aside>
+
+  <!-- Compare bar -->
+  <div class="compare-bar" id="compare-bar" hidden>
+    <div class="compare-bar-inner">
+      <span class="compare-label">Compare:</span>
+      <div class="compare-slots" id="compare-slots"></div>
+      <button type="button" class="btn-primary" id="compare-go">Compare Now</button>
+      <button type="button" class="btn-text" id="compare-clear">Clear</button>
+    </div>
+  </div>
+
+  <!-- Compare modal -->
+  <div class="modal-overlay" id="compare-modal" hidden>
+    <div class="modal compare-modal-inner" role="dialog" aria-modal="true" aria-label="Compare products">
+      <button type="button" class="modal-close" id="compare-modal-close" aria-label="Close">&times;</button>
+      <h2 style="margin:0 0 1.25rem">Compare Products</h2>
+      <div id="compare-table"></div>
+    </div>
+  </div>
+
+  <!-- Back to top -->
+  <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top" hidden>&#8679;</button>
+
+  <!-- Auth modal -->
+  <div class="modal-overlay" id="auth-modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title" style="max-width:420px">
+      <button type="button" class="modal-close" id="auth-modal-close" aria-label="Close">&times;</button>
+      <h2 id="auth-modal-title" style="margin:0 0 1.25rem">Welcome back</h2>
+      <div class="auth-tabs" role="tablist">
+        <button type="button" class="auth-tab is-active" data-tab="signin" role="tab">Sign In</button>
+        <button type="button" class="auth-tab" data-tab="signup" role="tab">Create Account</button>
+      </div>
+      <!-- Sign in form -->
+      <form id="signin-form" novalidate>
+        <label class="auth-field">Email <input type="email" id="signin-email" autocomplete="email" required /></label>
+        <label class="auth-field">Password <input type="password" id="signin-password" autocomplete="current-password" required /></label>
+        <p class="auth-error" id="signin-error" hidden></p>
+        <button type="submit" class="btn-primary full" id="signin-submit">Sign In</button>
+      </form>
+      <!-- Sign up form -->
+      <form id="signup-form" novalidate hidden>
+        <label class="auth-field">Full Name <input type="text" id="signup-name" autocomplete="name" required /></label>
+        <label class="auth-field">Email <input type="email" id="signup-email" autocomplete="email" required /></label>
+        <label class="auth-field">Password <input type="password" id="signup-password" autocomplete="new-password" required /></label>
+        <p class="auth-error" id="signup-error" hidden></p>
+        <button type="submit" class="btn-primary full" id="signup-submit">Create Account</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Account drawer -->
+  <div class="drawer-overlay" id="account-overlay" hidden></div>
+  <aside class="cart-drawer" id="account-drawer" aria-hidden="true" style="width:min(420px,100vw)">
+    <div class="drawer-head">
+      <h2>My Account</h2>
+      <button type="button" class="icon-btn" id="account-close" aria-label="Close account">&times;</button>
+    </div>
+    <div class="drawer-body" id="account-body"></div>
+    <div class="drawer-foot">
+      <button type="button" class="btn-outline full" id="signout-btn">Sign Out</button>
+    </div>
+  </aside>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
